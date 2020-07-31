@@ -14,6 +14,10 @@ import config.db as db
 
 import os
 
+#new
+import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -89,8 +93,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.0.3/ref/settings/#databases
 
 DATABASES = db.POSTGRESQL
-
-
+'''
+DATABASES = {
+    'default': dj_database_url.config()
+}
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0.3/ref/settings/#auth-password-validators
 
@@ -166,3 +173,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 GROUPS = {
     'employee': 2
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+django_heroku.settings(locals())
